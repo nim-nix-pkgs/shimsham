@@ -1,0 +1,26 @@
+{
+  description = ''Hashing/Digest collection in pure Nim'';
+
+  inputs.flakeNimbleLib.owner = "riinr";
+  inputs.flakeNimbleLib.ref   = "master";
+  inputs.flakeNimbleLib.repo  = "nim-flakes-lib";
+  inputs.flakeNimbleLib.type  = "github";
+  inputs.flakeNimbleLib.inputs.nixpkgs.follows = "nixpkgs";
+  
+  inputs.src-ShimSham-master.flake = false;
+  inputs.src-ShimSham-master.owner = "apense";
+  inputs.src-ShimSham-master.ref   = "refs/heads/master";
+  inputs.src-ShimSham-master.repo  = "shimsham";
+  inputs.src-ShimSham-master.type  = "github";
+  
+  outputs = { self, nixpkgs, flakeNimbleLib, ...}@deps:
+  let 
+    lib  = flakeNimbleLib.lib;
+    args = ["self" "nixpkgs" "flakeNimbleLib" "src-shimsham-master"];
+  in lib.mkRefOutput {
+    inherit self nixpkgs ;
+    src  = deps."src-shimsham-master";
+    deps = builtins.removeAttrs deps args;
+    meta = builtins.fromJSON (builtins.readFile ./meta.json);
+  };
+}
