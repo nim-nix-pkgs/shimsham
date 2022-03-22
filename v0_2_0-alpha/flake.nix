@@ -9,7 +9,7 @@
   
   inputs.src-shimsham-v0_2_0-alpha.flake = false;
   inputs.src-shimsham-v0_2_0-alpha.owner = "apense";
-  inputs.src-shimsham-v0_2_0-alpha.ref   = "refs/tags/v0.2.0-alpha";
+  inputs.src-shimsham-v0_2_0-alpha.ref   = "v0_2_0-alpha";
   inputs.src-shimsham-v0_2_0-alpha.repo  = "shimsham";
   inputs.src-shimsham-v0_2_0-alpha.type  = "github";
   
